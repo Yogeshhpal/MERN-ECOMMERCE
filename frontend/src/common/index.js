@@ -83,6 +83,10 @@ const SummaryApi = {
     paymentValidate: {
         url: `${backendDomain}api/order/validate`,
         method: "POST"
-    }
+    },
+    getOrder: {
+        url: `${backendDomain}api/order-list`,
+        method: 'GET'
+    },
 }
 export default SummaryApi;

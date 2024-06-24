@@ -4,9 +4,11 @@ import displayINRCurrency from '../helpers/displayCurrency';
 import { toast } from 'react-toastify';
 import { Navigate, useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
+import { useSelector } from 'react-redux';
 
 const CheckOut = () => {
     const navigate = useNavigate();
+    const user = useSelector((state) => state?.user?.user)
     const [billingDetails, setBillingDetails] = useState({
         firstName: '',
         lastName: '',
@@ -18,9 +20,10 @@ const CheckOut = () => {
         postalCode: '',
         country: '',
     });
+    // console.log("user->", user)
     const [loading, setLoading] = useState(false);
 
-    const { cartData } = useContext(Context);
+    const { cartData, fetchUserDetails } = useContext(Context);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,7 +36,8 @@ const CheckOut = () => {
     // Calculate total quantity and price
     const totalQty = cartData.reduce((prev, curr) => prev + curr.quantity, 0);
     const totalPrice = cartData.reduce((prev, curr) => prev + (curr.quantity * curr?.productId?.sellingPrice), 0);
-
+    // console.log("totalPrice", totalPrice)
+    // console.log("user ; ",user);
     const validateBillingDetails = () => {
         const { firstName, lastName, email, addressLine1, city, state, postalCode, country } = billingDetails;
         return firstName && lastName && email && addressLine1 && city && state && postalCode && country;
@@ -53,13 +57,27 @@ const CheckOut = () => {
             const response = await fetch(SummaryApi.payment.url, {
                 method: SummaryApi.payment.method,
                 body: JSON.stringify({
-                    amount: totalPrice * 100, // Amount in paise
+                    amount: totalPrice * 100,
                     currency: "INR",
-                    receipt: `receipt_${Date.now()}`
+                    receipt: `receipt_${Date.now()}`,
+                    // here including billing details
+                    firstName: billingDetails.firstName,
+                    lastName: billingDetails.lastName,
+                    email: billingDetails.email,
+                    addressLine1: billingDetails.addressLine1,
+                    addressLine2: billingDetails.addressLine2,
+                    city: billingDetails.city,
+                    state: billingDetails.state,
+                    postalCode: billingDetails.postalCode,
+                    country: billingDetails.country,
+                    quantity: totalQty,
+                    userId: user._id,  // Include userId here
+                    productDetails: cartData
                 }),
                 headers: {
                     "Content-Type": "application/json"
                 }
+
             });
 
             if (!response.ok) {
@@ -67,7 +85,7 @@ const CheckOut = () => {
             }
 
             const order = await response.json();
-            console.log("order --> ", order);
+            // console.log("order --> ", order);
 
             const options = {
                 key: "rzp_test_xHq484RLEGtuvY",
@@ -76,7 +94,7 @@ const CheckOut = () => {
                 name: "ShopEase",
                 description: "Test Transaction",
                 image: "https://example.com/your_logo",
-                order_id: order.id,
+                order_id: order.order.id,
                 handler: async function (response) {
                     const body = {
                         razorpay_order_id: response.razorpay_order_id,
@@ -99,7 +117,10 @@ const CheckOut = () => {
                     const jsonRes = await validateRes.json();
                     console.log("jsonResponse --> ", jsonRes);
                     toast.success("Payment Successful");
-                    navigate('/');
+
+                    navigate(`/order/${user._id}`, {
+                        state: order.orderDetails
+                    });
                 },
                 prefill: {
                     name: billingDetails.firstName + " " + billingDetails.lastName,

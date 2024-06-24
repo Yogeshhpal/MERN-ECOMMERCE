@@ -22,6 +22,8 @@ const filterProductController = require('../controllers/filterProduct');
 // ***************************************
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
+const orderModel = require('../models/orderSchema');
+const orderController = require('../controllers/orderController');
 require('dotenv').config();
 // **************************************
 
@@ -79,14 +81,47 @@ router.post("/order", async (req, res) => {
             key_secret: "GEzGusVPSHXx4fyo5ZXnFTcn"
         });
 
-        const options = req.body;
+        const { amount, currency, receipt, firstName, lastName, email, addressLine1, addressLine2, city, state, postalCode, country, quantity, userId, productDetails } = req.body;
+        // console.log("index.js --> ", req.body.id)
+        const options = {
+            amount,
+            currency,
+            receipt,
+        };
+        console.log("id : --> ", userId)
         const order = await razorpay.orders.create(options)
-
+        console.log("order: ", order)
         if (!order) {
             return res.status(500).send("Error")
         }
+        // console.log("amount",amount)
+        const newOrder = new orderModel({
+            amount: amount / 100,
+            currency,
+            receipt,
+            firstName,
+            lastName,
+            email,
+            addressLine1,
+            addressLine2,
+            city,
+            state,
+            postalCode,
+            country,
+            quantity,
+            orderId: order.id,
+            userId: userId,
+            productDetails
+        });
+        const orderDetails = await newOrder.save();
+        res.json({
+            order: order,
+            orderDetails: orderDetails,
+            message: "order created and stored successfully",
+            error: false,
+            success: true
+        })
 
-        res.json(order)
     } catch (err) {
         console.log(err);
         res.status(500).send("Error");
@@ -113,7 +148,7 @@ router.post("/order/validate", async (req, res) => {
 
     })
 })
-
+router.get("/order-list", authToken, orderController)
 
 
 

@@ -13,6 +13,8 @@ import ProductDetails from '../pages/ProductDetails';
 import Cart from '../pages/Cart';
 import SearchProduct from '../pages/SearchProduct';
 import CheckOut from '../pages/CheckOut';
+import OrderConfirmation from '../pages/OrderConfirmation';
+import OrderPage from '../pages/OrderPage';
 
 const routes = [
     {
@@ -28,6 +30,8 @@ const routes = [
             { path: 'cart', element: <Cart /> },
             { path: 'search', element: <SearchProduct /> },
             { path: 'cart/checkout', element: <CheckOut /> },
+            { path: "order/:orderId", element: <OrderConfirmation /> },
+            { path: "order-list", element: <OrderPage/> },
             {
                 path: 'admin-panel',
                 element: <AdminPanel />,
