@@ -25,7 +25,7 @@ const CategoryProduct = () => {
 
 
     const fetchData = async () => {
-        const response = await fetch("http://localhost:8080/api/filter-product", {
+        const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/filter-product", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

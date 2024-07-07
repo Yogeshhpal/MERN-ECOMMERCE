@@ -18,7 +18,7 @@ const AllUsers = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const fetchData = await fetch("http://localhost:8080/api/all-user", {
+            const fetchData = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/all-user", {
                 method: "GET",
                 credentials: 'include'
             });

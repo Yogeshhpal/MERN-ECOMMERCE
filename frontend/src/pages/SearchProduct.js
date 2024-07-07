@@ -14,7 +14,7 @@ const SearchProduct = () => {
 
     const fetchProduct = async () => {
         setLoading(true)
-        const response = await fetch("http://localhost:8080/api/search" + query.search);
+        const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/search" + query.search);
         const dataResponse = await response.json();
         setLoading(false)
 

@@ -48,7 +48,7 @@ const Signup = () => {
         e.preventDefault();
 
         if (data.password === data.confirmPassword) {
-            const dataResponse = await fetch("http://localhost:8080/api/signup", {
+            const dataResponse = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/signup", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

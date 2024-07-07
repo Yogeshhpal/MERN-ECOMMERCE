@@ -9,7 +9,7 @@ const OrderPage = () => {
 
     const fetchOrderDetails = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/order-list", {
+            const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/order-list", {
                 method: 'GET',
                 credentials: 'include',
                 headers: {

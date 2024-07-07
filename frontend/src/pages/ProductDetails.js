@@ -36,7 +36,7 @@ const ProductDetails = () => {
 
   const fetchProductDetails = async () => {
     setLoading(true)
-    const response = await fetch("http://localhost:8080/api/product-details", {
+    const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/product-details", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

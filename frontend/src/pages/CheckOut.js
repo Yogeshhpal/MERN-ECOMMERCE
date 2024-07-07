@@ -61,7 +61,7 @@ const CheckOut = () => {
         setLoading(true);
 
         try {
-            const response = await fetch("http://localhost:8080/api/order", {
+            const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/order", {
                 method: "POST",
                 body: JSON.stringify({
                     amount: totalPrice * 100,
