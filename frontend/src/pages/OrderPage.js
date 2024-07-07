@@ -9,8 +9,8 @@ const OrderPage = () => {
 
     const fetchOrderDetails = async () => {
         try {
-            const response = await fetch(SummaryApi.getOrder.url, {
-                method: SummaryApi.getOrder.method,
+            const response = await fetch("http://localhost:8080/api/order-list", {
+                method: 'GET',
                 credentials: 'include',
                 headers: {
                     'Authorization': `Bearer ${user.token}`,

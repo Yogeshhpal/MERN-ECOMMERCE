@@ -48,8 +48,8 @@ const Signup = () => {
         e.preventDefault();
 
         if (data.password === data.confirmPassword) {
-            const dataResponse = await fetch(SummaryApi.signUP.url, {
-                method: SummaryApi.signUP.method,
+            const dataResponse = await fetch("http://localhost:8080/api/signup", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -140,7 +140,7 @@ const Signup = () => {
                                         onChange={handleOnChange} required />
                                     <div className='cursor-pointer text-xl' onClick={() => setshowPassword((prev) => !prev)}>
                                         <span>
-                                            { 
+                                            {
                                                 showPassword ? (
                                                     <FaEyeSlash />
                                                 )

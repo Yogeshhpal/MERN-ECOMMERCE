@@ -31,13 +31,13 @@ const routes = [
             { path: 'search', element: <SearchProduct /> },
             { path: 'cart/checkout', element: <CheckOut /> },
             { path: "order/:orderId", element: <OrderConfirmation /> },
-            { path: "order-list", element: <OrderPage/> },
+            { path: "order-list", element: <OrderPage /> },
             {
                 path: 'admin-panel',
                 element: <AdminPanel />,
                 children: [
                     { path: 'all-users', element: <AllUsers /> },
-                    { path: "all-products", element: <AllProducts /> }
+                    { path: "all-products", element: <AllProducts /> },
                 ],
             },
         ],

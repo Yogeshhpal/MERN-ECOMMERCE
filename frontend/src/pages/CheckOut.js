@@ -61,8 +61,8 @@ const CheckOut = () => {
         setLoading(true);
 
         try {
-            const response = await fetch(SummaryApi.payment.url, {
-                method: SummaryApi.payment.method,
+            const response = await fetch("http://localhost:8080/api/order", {
+                method: "POST",
                 body: JSON.stringify({
                     amount: totalPrice * 100,
                     currency: "INR",

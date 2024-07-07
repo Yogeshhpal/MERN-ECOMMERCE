@@ -18,8 +18,8 @@ const AllUsers = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const fetchData = await fetch(SummaryApi.allUser.url, {
-                method: SummaryApi.allUser.method,
+            const fetchData = await fetch("http://localhost:8080/api/all-user", {
+                method: "GET",
                 credentials: 'include'
             });
 

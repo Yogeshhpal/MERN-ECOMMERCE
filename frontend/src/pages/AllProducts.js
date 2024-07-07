@@ -8,7 +8,7 @@ const AllProducts = () => {
   const [allProduct, setAllProduct] = useState([])
 
   const fetchAllProduct = async () => {
-    const response = await fetch(SummaryApi.allProduct.url)
+    const response = await fetch("http://localhost:8080/api/get-product")
     const dataResponse = await response.json()
 
     setAllProduct(dataResponse?.data || []);
@@ -31,7 +31,7 @@ const AllProducts = () => {
         {
           allProduct.map((cv, index, arr) => {
             return (
-              <AdminProductCard data={cv} key={index+"allProduct"} fetchData={fetchAllProduct} />
+              <AdminProductCard data={cv} key={index + "allProduct"} fetchData={fetchAllProduct} />
             )
           })
         }

@@ -36,8 +36,8 @@ const ProductDetails = () => {
 
   const fetchProductDetails = async () => {
     setLoading(true)
-    const response = await fetch(SummaryApi.productDetails.url, {
-      method: SummaryApi.productDetails.method,
+    const response = await fetch("http://localhost:8080/api/product-details", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json"
       },

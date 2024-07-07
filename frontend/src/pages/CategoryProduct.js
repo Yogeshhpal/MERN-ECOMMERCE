@@ -25,8 +25,8 @@ const CategoryProduct = () => {
 
 
     const fetchData = async () => {
-        const response = await fetch(SummaryApi.filterProduct.url, {
-            method: SummaryApi.filterProduct.method,
+        const response = await fetch("http://localhost:8080/api/filter-product", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },

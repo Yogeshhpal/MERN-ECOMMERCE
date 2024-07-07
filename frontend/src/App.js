@@ -14,8 +14,8 @@ const App = () => {
 
   const fetchUserDetails = async () => {
     try {
-      const dataResponse = await fetch(SummaryApi.current_user.url, {
-        method: SummaryApi.current_user.method,
+      const dataResponse = await fetch("http://localhost:8080/api/user-details", {
+        method: "GET",
         credentials: 'include',
       });
 
@@ -35,8 +35,8 @@ const App = () => {
 
   const fetchCartData = async () => {
     try {
-      const response = await fetch(SummaryApi.addToCartProductView.url, {
-        method: SummaryApi.addToCartProductView.method,
+      const response = await fetch("http://localhost:8080/api/view-cart-product", {
+        method: "GET",
         credentials: 'include',
         headers: {
           "Content-Type": "application/json"
@@ -54,8 +54,8 @@ const App = () => {
 
   const fetchUserAddToCart = async () => {
     try {
-      const dataResponse = await fetch(SummaryApi.addToCartProductCount.url, {
-        method: SummaryApi.addToCartProductCount.method,
+      const dataResponse = await fetch("http://localhost:8080/api/countAddToCartProduct", {
+        method: "GET",
         credentials: 'include',
       });
 
