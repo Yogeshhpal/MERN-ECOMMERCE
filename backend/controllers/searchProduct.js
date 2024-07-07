@@ -4,7 +4,6 @@ const searchProduct = async (req, res) => {
     try {
         const query = req.query.q;
 
-        // console.log(query)
 
         // https://www.tutorialspoint.com/regex-in-reactjs
         const regex = new RegExp(query, 'i', 'g')

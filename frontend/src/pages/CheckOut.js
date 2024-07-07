@@ -1,10 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Context from '../context';
 import displayINRCurrency from '../helpers/displayCurrency';
 import { toast } from 'react-toastify';
 import { Navigate, useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import { useSelector } from 'react-redux';
+import Logo from '../components/Logo';
 
 const CheckOut = () => {
     const navigate = useNavigate();
@@ -22,8 +23,13 @@ const CheckOut = () => {
     });
     // console.log("user->", user)
     const [loading, setLoading] = useState(false);
+    const [data, setData] = useState([]);
+    const { cartData, fetchUserDetails, fetchUserAddToCart } = useContext(Context);
 
-    const { cartData, fetchUserDetails } = useContext(Context);
+    // useEffect(() => {
+    //     fetchUserAddToCart();
+    //     fetchUserDetails();
+    // }, [])
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -42,6 +48,7 @@ const CheckOut = () => {
         const { firstName, lastName, email, addressLine1, city, state, postalCode, country } = billingDetails;
         return firstName && lastName && email && addressLine1 && city && state && postalCode && country;
     };
+
 
     const paymentHandler = async (e) => {
         e.preventDefault();
@@ -91,9 +98,9 @@ const CheckOut = () => {
                 key: "rzp_test_xHq484RLEGtuvY",
                 amount: totalPrice * 100, // Amount in paise
                 currency: "INR",
-                name: "ShopEase",
+                name: "Flipkart",
                 description: "Test Transaction",
-                image: "https://example.com/your_logo",
+                image: "https://res.cloudinary.com/dwilc78qs/image/upload/v1720332788/ny0lhrjxmkxyztqimxlm.png",
                 order_id: order.order.id,
                 handler: async function (response) {
                     const body = {
@@ -115,7 +122,7 @@ const CheckOut = () => {
                     }
 
                     const jsonRes = await validateRes.json();
-                    console.log("jsonResponse --> ", jsonRes);
+                    // console.log("jsonResponse --> ", jsonRes);
                     toast.success("Payment Successful");
 
                     navigate(`/order/${user._id}`, {
@@ -134,6 +141,8 @@ const CheckOut = () => {
                     color: "#3399cc"
                 }
             };
+
+            // console.log("options --> ", options);
 
             const rzp1 = new window.Razorpay(options);
             rzp1.on('payment.failed', function (response) {
@@ -325,3 +334,5 @@ const CheckOut = () => {
 };
 
 export default CheckOut;
+
+

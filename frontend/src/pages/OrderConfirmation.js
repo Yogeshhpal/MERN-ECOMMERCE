@@ -13,7 +13,7 @@ const OrderConfirmation = () => {
         documentTitle: 'Order_Confirmation',
     });
 
-    console.log(orderDetails);
+    // console.log(orderDetails);
 
     if (!orderDetails || Object.keys(orderDetails).length === 0) {
         return <p>Order details not found.</p>;

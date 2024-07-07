@@ -4,8 +4,6 @@ const orderController = async (req, res) => {
     try {
         const currentUserId = req.userId;
 
-        console.log("currentUserId--->", currentUserId);
-
         if (!currentUserId) {
             return res.status(400).json({
                 message: "User ID is required",
@@ -14,7 +12,6 @@ const orderController = async (req, res) => {
         }
 
         const orderList = await orderModel.find({ userId: currentUserId }).sort({ createdAt: -1 });
-        console.log("orderList--->", orderList);
 
         if (orderList.length === 0) {
             return res.json({

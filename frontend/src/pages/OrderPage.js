@@ -24,7 +24,7 @@ const OrderPage = () => {
 
             const responseData = await response.json();
             setData(responseData.data);
-            console.log('Order list:', responseData);
+            // console.log('Order list:', responseData);
         } catch (error) {
             console.error('Error fetching order details:', error);
         }

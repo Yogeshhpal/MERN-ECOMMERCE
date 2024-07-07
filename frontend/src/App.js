@@ -64,7 +64,7 @@ const App = () => {
       }
 
       const dataApi = await dataResponse.json();
-      console.log("dataApi", dataApi);
+      // console.log("dataApi", dataApi);
       setCartProductCount(dataApi?.data);
     } catch (error) {
       console.error('Fetch cart product count failed:', error);

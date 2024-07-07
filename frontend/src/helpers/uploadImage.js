@@ -17,7 +17,7 @@ const uploadImage = async (image) => {
         }
 
         const data = await dataResponse.json();
-        console.log("upload image , ", data);
+        // console.log("upload image , ", data);
         return data;
     } catch (error) {
         console.error("Error uploading image:", error);

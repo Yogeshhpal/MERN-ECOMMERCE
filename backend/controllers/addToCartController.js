@@ -5,12 +5,7 @@ const addToCartController = async (req, res) => {
         const { productId } = req.body;
         const currentUser = req.userId;
 
-        // console.log("Received productId:", productId);
-        // console.log("Current user ID:", currentUser);
-
         const isProductAvailable = await addToCartModel.findOne({ productId, userId: currentUser });
-
-        // console.log("isProductAvailable:", isProductAvailable);
 
         if (isProductAvailable) {
             return res.status(200).json({
@@ -28,8 +23,6 @@ const addToCartController = async (req, res) => {
 
         const newAddToCart = new addToCartModel(payload);
         const saveProduct = await newAddToCart.save();
-
-        // console.log("saveProduct:", saveProduct);
 
         return res.status(201).json({
             data: saveProduct,

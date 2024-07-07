@@ -82,19 +82,15 @@ router.post("/order", async (req, res) => {
         });
 
         const { amount, currency, receipt, firstName, lastName, email, addressLine1, addressLine2, city, state, postalCode, country, quantity, userId, productDetails } = req.body;
-        // console.log("index.js --> ", req.body.id)
         const options = {
             amount,
             currency,
             receipt,
         };
-        console.log("id : --> ", userId)
         const order = await razorpay.orders.create(options)
-        console.log("order: ", order)
         if (!order) {
             return res.status(500).send("Error")
         }
-        // console.log("amount",amount)
         const newOrder = new orderModel({
             amount: amount / 100,
             currency,
@@ -123,18 +119,14 @@ router.post("/order", async (req, res) => {
         })
 
     } catch (err) {
-        console.log(err);
         res.status(500).send("Error");
     }
 })
 
 router.post("/order/validate", async (req, res) => {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
-    // console.log(req);
-    console.log("idss : ", razorpay_order_id, razorpay_payment_id, razorpay_signature);
 
     const sha = crypto.createHmac("sha256", "GEzGusVPSHXx4fyo5ZXnFTcn");
-    //order_id + "|" + razorpay_payment_id
     sha.update(`${razorpay_order_id}|${razorpay_payment_id}`);
     const digest = sha.digest("hex");
     if (digest !== razorpay_signature) {

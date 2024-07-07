@@ -13,7 +13,7 @@ async function updateUser(req, res) {
 
         const user = await userModel.findById(sessionUser);
 
-        console.log("user.role : ", user.role);
+        // console.log("user.role : ", user.role);
 
         const updatedUser = await userModel.findByIdAndUpdate(userId, payload, { new: true }); // Use { new: true } to return the updated document
 
