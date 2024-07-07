@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors({
-    origin: "https://mern-ecommerce-ki8v-6t7ivu0a7-yogeshs-projects-60f26ef9.vercel.app/",
+    origin: "http://localhost:3000",
     credentials: true
 }));
 app.use(express.json()); // This should come before routes
