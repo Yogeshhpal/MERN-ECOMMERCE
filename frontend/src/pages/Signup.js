@@ -48,8 +48,8 @@ const Signup = () => {
         e.preventDefault();
 
         if (data.password === data.confirmPassword) {
-            const dataResponse = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/signup", {
-                method: "POST",
+            const dataResponse = await fetch(SummaryApi.signUP.url, {
+                method: SummaryApi.signUP.method,
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -140,7 +140,7 @@ const Signup = () => {
                                         onChange={handleOnChange} required />
                                     <div className='cursor-pointer text-xl' onClick={() => setshowPassword((prev) => !prev)}>
                                         <span>
-                                            {
+                                            { 
                                                 showPassword ? (
                                                     <FaEyeSlash />
                                                 )

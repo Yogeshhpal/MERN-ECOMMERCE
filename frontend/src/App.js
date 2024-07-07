@@ -14,8 +14,8 @@ const App = () => {
 
   const fetchUserDetails = async () => {
     try {
-      const dataResponse = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/user-details", {
-        method: "GET",
+      const dataResponse = await fetch(SummaryApi.current_user.url, {
+        method: SummaryApi.current_user.method,
         credentials: 'include',
       });
 
@@ -35,8 +35,8 @@ const App = () => {
 
   const fetchCartData = async () => {
     try {
-      const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/view-cart-product", {
-        method: "GET",
+      const response = await fetch(SummaryApi.addToCartProductView.url, {
+        method: SummaryApi.addToCartProductView.method,
         credentials: 'include',
         headers: {
           "Content-Type": "application/json"
@@ -54,8 +54,8 @@ const App = () => {
 
   const fetchUserAddToCart = async () => {
     try {
-      const dataResponse = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/countAddToCartProduct", {
-        method: "GET",
+      const dataResponse = await fetch(SummaryApi.addToCartProductCount.url, {
+        method: SummaryApi.addToCartProductCount.method,
         credentials: 'include',
       });
 

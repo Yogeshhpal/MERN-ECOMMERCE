@@ -18,8 +18,8 @@ const AllUsers = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const fetchData = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/all-user", {
-                method: "GET",
+            const fetchData = await fetch(SummaryApi.allUser.url, {
+                method: SummaryApi.allUser.method,
                 credentials: 'include'
             });
 

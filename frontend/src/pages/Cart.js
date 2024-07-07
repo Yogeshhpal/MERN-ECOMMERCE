@@ -13,8 +13,8 @@ const Cart = () => {
 
   const fetchData = async () => {
     // setLoading(true);
-    const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/view-cart-product", {
-      method: "GET",
+    const response = await fetch(SummaryApi.addToCartProductView.url, {
+      method: SummaryApi.addToCartProductView.method,
       credentials: 'include',
       headers: {
         "Content-Type": "application/json"
@@ -43,8 +43,8 @@ const Cart = () => {
   //increase Quntity
   const increaseQty = async (id, qty) => {
     try {
-      const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/update-cart-product", {
-        method: "POST",
+      const response = await fetch(SummaryApi.updateCartProduct.url, {
+        method: SummaryApi.updateCartProduct.method,
         credentials: 'include',
         headers: {
           "Content-Type": "application/json"
@@ -74,8 +74,8 @@ const Cart = () => {
   const decreaseQty = async (id, qty) => {
     if (parseInt(qty) >= 2) {
       try {
-        const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/update-cart-product", {
-          method: "POST",
+        const response = await fetch(SummaryApi.updateCartProduct.url, {
+          method: SummaryApi.updateCartProduct.method,
           credentials: 'include',
           headers: {
             "Content-Type": "application/json"
@@ -105,8 +105,8 @@ const Cart = () => {
   //delete/remove product from cart
   const deleteCartProduct = async (id) => {
     try {
-      const response = await fetch("https://mern-ecommerce-7npwe4t1m-yogeshs-projects-60f26ef9.vercel.appapi/delete-cart-product", {
-        method: "POST",
+      const response = await fetch(SummaryApi.deleteCartProduct.url, {
+        method: SummaryApi.deleteCartProduct.method,
         credentials: 'include',
         headers: {
           "Content-Type": "application/json"
